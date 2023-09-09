@@ -83,10 +83,10 @@ class Simplex:
 
 if __name__ == '__main__':
     """
-    max Z = 3x1 + 2x2
+    max Z = x1 + x2 + x3
     x1 + x2 <= 4
     x1 - x2 <= 2
-    x1,x2 >= 0 
+    x1,x2 >= 0
     """
 
     t = Simplex([-3, -2])
