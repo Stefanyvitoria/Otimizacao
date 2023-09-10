@@ -1,7 +1,6 @@
 from variaveis import * 
 from utils import * 
 
-global variaveis,horario_por_disciplinas, restricoes
 
 """
 Disciplina uma vez por semestre
