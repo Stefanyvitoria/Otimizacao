@@ -60,6 +60,7 @@ file_precedencia_por_disciplinas.close()
 
 # Abrir o arquivo txt de precedentes
 file_precedencia_por_disciplinas2 = open("./disciplinas_precedentes.txt", "r", encoding="utf-8")
+file_precedencia_por_disciplinas3 = open("./disciplinas_precedentes.txt", "r", encoding="utf-8")
 
 ###############################################
 # ÚTILS
@@ -194,6 +195,29 @@ def restricao_6():
             X.append(x)
         
         add_restricao(X,0)
+
+"""
+Disciplinas que tem precedência não podem ficar no primeiro semestre.
+"""
+def restricao_7():
+    precedencia_disciplinas = file_precedencia_por_disciplinas3.readlines()
+    for disciplinas in precedencia_disciplinas:
+        if disciplinas[0] == "#": 
+            continue
+            
+        # Verifica se a que ela depende já foi conluída
+        disciplina_requesito = disciplinas.replace('\n','').split(',')[1]
+
+        horario_disciplina = horario_por_disciplinas[disciplina_requesito]
+        valores_de_x = variaveis[disciplina_requesito]
+        dia = int(horario_disciplina[0]) - 1 #seg =1, ter=2, qua=3...
+        
+        X = []
+        for aula in horario_disciplina[2:]:
+            x = get_x(inicio_x=valores_de_x[0],dia=dia,semestre=NUM_MAX_SEMESTRES,horario=int(aula))
+            X.append(x)
+        
+        add_restricao(X,0)
         
 ###############################################
 # MAIN
@@ -249,6 +273,7 @@ def main():
     restricao_1()
     restricao_4()
     restricao_6()
+    restricao_7()
 
     # print(horario_disciplinas)
     print(func_objetivo)
