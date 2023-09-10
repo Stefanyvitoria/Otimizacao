@@ -23,3 +23,5 @@ func_objetivo = []
 
 # Dicionário onde a chave é o código da disciplina e o valor é a quantidade inicial e final de x's dela
 variaveis = {} # '12345':[1,900]
+
+file_disciplinas_concluidas = open("./disciplinas_concluidas.txt", "r", encoding="utf-8").readlines()

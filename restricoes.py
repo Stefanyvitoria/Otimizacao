@@ -1,14 +1,13 @@
 from variaveis import * 
 from utils import * 
 
+global variaveis,horario_por_disciplinas, restricoes
 
 """
 Disciplina uma vez por semestre
 Disciplina em um turno só
 """
 def restricao_1():
-    
-    global variaveis,horario_por_disciplinas, restricoes
 
     X = []
     for disciplina in variaveis.keys():
@@ -22,3 +21,13 @@ def restricao_1():
                 X.append(x)
         
         add_restricao(indices_x=X,menor_que=4)
+
+"""
+Elimina as disciplinas que o usuário já concluiu.
+"""
+def restricao_3(diciplina):
+
+    disciplinas_concluidas = [d.split(',')[0] for d in file_disciplinas_concluidas]
+    if diciplina in disciplinas_concluidas: 
+        return True
+    return False
