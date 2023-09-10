@@ -12,17 +12,24 @@ def funcao_objetivo(func_objetivo):
 
 
 """Monta o dicinário de horários"""
-def get_horarios_discipinas( lines) :
+def get_horarios_discipinas(lines) :
     
     global num_disciplinas, quantidade_maxima_variaveis, horario_disciplinas, variaveis, horario_por_disciplinas
 
     x = 1
     num_disciplinas = 0
+    listarestricao5 = []
+    
     for disc in lines:
         if disc[0] == "#" or restricao_2(disc) or restricao_3(disc):
             continue
+
+        disc = disc[0:-1].split(",")  
+
+        if restricao_5(disc, listarestricao5) == False:
+            continue
+              
         
-        disc = disc[0:-1].split(",")
         # Monta o dicionários de horários
         if disc[3] in horario_disciplinas.keys():
             horario_disciplinas[f"{disc[3]}"].append([f"{disc[0]}", num_disciplinas])
@@ -35,6 +42,8 @@ def get_horarios_discipinas( lines) :
         variaveis[disc[0]] = [x, x_aux-1]
         x = x_aux
         horario_por_disciplinas[disc[0]] = f"{disc[3]}"
+
+    
 
     quantidade_maxima_variaveis = NUM_HORARIOS * NUM_MAX_SEMESTRES * NUM_DIAS * num_disciplinas
 
@@ -50,10 +59,12 @@ def main():
 
     restricao_1()
 
-    # print(horario_disciplinas)
+    print(horario_disciplinas)
     print(func_objetivo)
-    print(restricoes)
+    #print(restricoes)
+    
 
 
 if __name__ == "__main__":
     main()
+
