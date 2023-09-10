@@ -5,7 +5,6 @@ def get_x(inicio_x,semestre, horario, dia):
 
 
 def add_restricao(indices_para_receber_1, valor_depois_do_igual):
-    
     global NUM_HORARIOS, NUM_MAX_SEMESTRES, NUM_DIAS, num_disciplinas,quantidade_maxima_variaveis, restricoes
     restricao = []
 
