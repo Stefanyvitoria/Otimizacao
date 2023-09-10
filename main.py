@@ -169,6 +169,12 @@ def restricao_4():
             X.append(x)
         add_restricao(X,4)
 
+#def restricao_5(disciplina, lista):
+    if disciplina[3] in lista:
+        return False
+    else:
+        lista.append(disciplina[3])
+
 """
 Disciplinas que tem precedência não podem ficar no primeiro semestre.
 """
@@ -221,6 +227,10 @@ def get_horarios_discipinas( lines) :
             continue
 
         disc = disc[0:-1].split(",")
+
+        #if restricao_5(disc, listarestricao5) == False:
+            #continue
+            
         # Monta o dicionários de horários
         if disc[3] in horario_disciplinas.keys():
             horario_disciplinas[f"{disc[3]}"].append([f"{disc[0]}", num_disciplinas])
