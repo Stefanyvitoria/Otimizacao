@@ -25,33 +25,31 @@ func_objetivo = []
 variaveis = {} # '12345':[1,900]
 
 # Abrir o arquivo txt de precedentes
-arquivo = open("./disciplinas_precedentes.txt", "r", encoding="utf-8")
-
-# Criar um dicionário vazio para armazenar os precedentes por disciplina
-precedencia_por_disciplinas = {}
-
-# Para cada linha do arquivo, separar os códigos das disciplinas por vírgula
-for linha in arquivo.readlines():
-  disciplinas = linha.split(",")
-
-  # A primeira disciplina da linha é a que depende das outras
-  dependente = disciplinas[0]
-
-  # As demais disciplinas da linha são as que precedem a primeira
-  precedentes = disciplinas[1:]
-
-  # Remover os espaços em branco e as quebras de linha dos códigos das disciplinas
-  dependente = dependente.strip()
-  precedentes = [p.strip() for p in precedentes]
-
-  # Adicionar a chave e o valor ao dicionário de precedentes
-  precedencia_por_disciplinas[dependente] = precedentes
-
-# Fechar o arquivo txt de precedentes
-arquivo.close()
-
-# lista com os horários indisponíveis 
-horarios_indisponiveis = open("./horarios_indisponiveis.txt", "r", encoding="utf-8").readlines()
+file_precedencia_por_disciplinas = open("./disciplinas_precedentes.txt", "r", encoding="utf-8")
 
 #lista de disciplinas concluídas
 file_disciplinas_concluidas = open("./disciplinas_concluidas.txt", "r", encoding="utf-8").readlines()
+disciplinas_concluidas = [d.split(',')[0] for d in file_disciplinas_concluidas]
+
+# Criar um dicionário vazio para armazenar os precedentes por disciplina
+precedencia_por_disciplinas = {}
+# lista com os horários indisponíveis 
+horarios_indisponiveis = open("./horarios_indisponiveis.txt", "r", encoding="utf-8").readlines()
+# Para cada linha do arquivo, separar os códigos das disciplinas por vírgula
+for linha in file_precedencia_por_disciplinas.readlines():
+  if linha[0] == '#':
+    continue
+  disciplinas = linha.split(",")
+  # A primeira disciplina da linha é a que depende das outras
+  dependente = disciplinas[0]
+  # As demais disciplinas da linha são as que precedem a primeira
+  precedentes = disciplinas[1:]
+  # Remover os espaços em branco e as quebras de linha dos códigos das disciplinas
+  dependente = dependente.strip()
+  # reune os precedentes em uma lista, verificando se eles não estão na lista de concluidas
+  precedentes = [p.strip() for p in precedentes if p.strip() not in disciplinas_concluidas]
+  # Adicionar a chave e o valor ao dicionário de precedentes
+  precedencia_por_disciplinas[dependente] = precedentes
+  # Fechar o arquivo txt de precedentes
+file_precedencia_por_disciplinas.close()
+
