@@ -23,3 +23,6 @@ func_objetivo = []
 
 # Dicionário onde a chave é o código da disciplina e o valor é a quantidade inicial e final de x's dela
 variaveis = {} # '12345':[1,900]
+
+# lista com os horários indisponíveis 
+horarios_indisponiveis = open("./horarios_indisponiveis.txt", "r", encoding="utf-8").readlines()

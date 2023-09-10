@@ -7,8 +7,6 @@ Disciplina uma vez por semestre
 Disciplina em um turno só
 """
 def restricao_1():
-    
-    global variaveis,horario_por_disciplinas, restricoes
 
     X = []
     for disciplina in variaveis.keys():
@@ -21,4 +19,31 @@ def restricao_1():
                 x = get_x(inicio_x=valores_de_x[0],dia=dia,semestre=semestre,horario=int(aula))
                 X.append(x)
         
-        add_restricao(indices_x=X,menor_que=4)
+        add_restricao(X,4)
+
+def restricao_2(disciplina):
+    # Extrai os dados da disciplina
+    codigo_disc, nome_disc, turma_disc, horario_disc = disciplina.replace("\n", "").split(",")
+    # Separa o dia e as horas do horário da disciplina
+    dia_disc = horario_disc[:2]
+    horas_disc = list(horario_disc[2:])
+    
+    # Percorre os horários indisponíveis
+    for horario_indisponivel in horarios_indisponiveis:
+        # Separa o dia e as horas do horário indisponível
+        dia_indisponivel = horario_indisponivel[:2]
+        horas_indisponivel = horario_indisponivel[2:]
+        # Verifica se o dia da disciplina coincide com o dia indisponível
+        if dia_disc == dia_indisponivel:
+            # Verifica se alguma hora da disciplina coincide com alguma hora indisponível
+            for hora_disc in horas_disc:
+                if hora_disc in horas_indisponivel:
+                    # Retorna True se houver coincidência, indicando que há restrição
+                    return True   
+    # Retorna False se não houver coincidência, indicando que não há restrição
+    return False
+
+
+
+
+
