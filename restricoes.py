@@ -1,14 +1,16 @@
 from variaveis import * 
 from utils import * 
 
-global variaveis,horario_por_disciplinas, restricoes
-
+# global num_disciplinas, quantidade_maxima_variaveis, horario_disciplinas, variaveis, horario_por_disciplinas
+    
 """
 Disciplina uma vez por semestre
 Disciplina em um turno só
 """
 
 def restricao_1():
+    global num_disciplinas, quantidade_maxima_variaveis, horario_disciplinas, variaveis, horario_por_disciplinas
+    
     X = []
     for disciplina in variaveis.keys():
         horario_disciplina = horario_por_disciplinas[disciplina]
@@ -91,7 +93,7 @@ Disciplinas que tem precedência não podem ficar no primeiro semestre.
 """
 def restricao_6():
     
-    for disciplinas in precedencia_disciplinas:
+    for disciplinas in file_precedencia_por_disciplinas.readlines():
         if disciplinas[0] == "#": 
             continue
             

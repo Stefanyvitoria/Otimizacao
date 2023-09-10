@@ -13,6 +13,9 @@ def funcao_objetivo(func_objetivo):
 
 """Monta o dicinário de horários"""
 def get_horarios_discipinas( lines) :
+
+    global num_disciplinas, quantidade_maxima_variaveis, horario_disciplinas, variaveis, horario_por_disciplinas
+    
     x = 1
     num_disciplinas = 0
     for disc in lines:
@@ -40,17 +43,14 @@ def get_horarios_discipinas( lines) :
 
 def main():
 
-    #Variáveis globais
-    global horario_disciplinas, horario_por_disciplinas, restricoes, variaveis, func_objetivo
-
     file_disciplinas = open("./disciplinas.txt", "r", encoding="utf-8")
     lines = file_disciplinas.readlines()
 
     get_horarios_discipinas(lines=lines)
 
     funcao_objetivo(func_objetivo=func_objetivo)
-    restricao_4()
     restricao_1()
+    restricao_4()
     restricao_6()
 
     # print(horario_disciplinas)

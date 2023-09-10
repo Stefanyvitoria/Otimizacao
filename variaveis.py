@@ -5,9 +5,9 @@ NUM_DIAS = 5
 turnos = {"M": 1, "T": 5, "N": 9}
 
 # VARIÁVEIS
-num_disciplinas = 0
-
-quantidade_maxima_variaveis = 0
+global num_disciplinas, quantidade_maxima_variaveis
+num_disciplinas = 1
+quantidade_maxima_variaveis = 1
 
 #Dicionário onde a chave é o horário e o valor é um array com os códigos das diciplinas
 horario_disciplinas = {} # '2M1234' : ['12345','67890' ]
@@ -51,5 +51,5 @@ for linha in file_precedencia_por_disciplinas.readlines():
   # Adicionar a chave e o valor ao dicionário de precedentes
   precedencia_por_disciplinas[dependente] = precedentes
   # Fechar o arquivo txt de precedentes
-file_precedencia_por_disciplinas.close()
+# file_precedencia_por_disciplinas.close()
 
