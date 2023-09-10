@@ -1,13 +1,16 @@
 from variaveis import * 
 from utils import * 
 
-
+# global num_disciplinas, quantidade_maxima_variaveis, horario_disciplinas, variaveis, horario_por_disciplinas
+    
 """
 Disciplina uma vez por semestre
 Disciplina em um turno só
 """
-def restricao_1():
 
+def restricao_1():
+    global num_disciplinas, quantidade_maxima_variaveis, horario_disciplinas, variaveis, horario_por_disciplinas
+    
     X = []
     for disciplina in variaveis.keys():
         horario_disciplina = horario_por_disciplinas[disciplina]
@@ -20,7 +23,9 @@ def restricao_1():
                 X.append(x)
         add_restricao(X,4)
 
-
+"""
+Restrição de não alocar disciplinas em horários de indisponibilidade do usuário.
+"""
 def restricao_2(disciplina):
     # Extrai os dados da disciplina
     codigo_disc, nome_disc, turma_disc, horario_disc = disciplina.replace("\n", "").split(",")
@@ -49,57 +54,7 @@ Elimina as disciplinas que o usuário já concluiu.
 """
 def restricao_3(diciplina):
 
-    disciplinas_concluidas = [d.split(',')[0] for d in file_disciplinas_concluidas]
+    
     if diciplina.split(',')[0] in disciplinas_concluidas: 
         return True
     return False
-
-def restricao_5(disciplina, lista):
-    
-
-    if disciplina[3] in lista:
-        return False
-    else:
-        lista.append(disciplina[3]) 
-
-
-
-
-
-
-
-'''string = '2M1234'
-lista = [string[:2], list(string[2:])]
-
-lista3 = []
-
-string2 = '2M5678'
-lista2 = [string2[:2], list(string2[2:])]
- 
-
-string4 = '2M9'
-lista4 = [string4[:2], list(string4[2:])]
-
-
-
-lista3.append(lista2)
-lista3.append(lista4)
-
-
-for i in lista3:
-    print(i)
-    if lista[0] in lista3:
-        print('passa')
-    for i in lista3:
-        print(i)
-        print(lista[1])
-        if i in lista[1]:
-            print('n passa')
-            break
-        else:
-            print('passa')'''
-
-    
-    
-    
-
