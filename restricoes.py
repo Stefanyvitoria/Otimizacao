@@ -122,47 +122,8 @@ def restricao_3(diciplina):
         return True
     return False
 
-def restricao_5(disciplina, lista):
-    
-
+#def restricao_5(disciplina, lista):
     if disciplina[3] in lista:
         return False
     else:
         lista.append(disciplina[3]) 
-
-
-
-
-
-
-
-'''string = '2M1234'
-lista = [string[:2], list(string[2:])]
-
-lista3 = []
-
-string2 = '2M5678'
-lista2 = [string2[:2], list(string2[2:])]
- 
-
-string4 = '2M9'
-lista4 = [string4[:2], list(string4[2:])]
-
-
-
-lista3.append(lista2)
-lista3.append(lista4)
-
-
-for i in lista3:
-    print(i)
-    if lista[0] in lista3:
-        print('passa')
-    for i in lista3:
-        print(i)
-        print(lista[1])
-        if i in lista[1]:
-            print('n passa')
-            break
-        else:
-            print('passa')'''
