@@ -19,7 +19,7 @@ def get_horarios_discipinas( lines) :
       
         if disc[0] == "#" or restricao_2(disc) or restricao_3(disc):
             continue
-        
+
         disc = disc[0:-1].split(",")
         # Monta o dicionários de horários
         if disc[3] in horario_disciplinas.keys():
@@ -39,6 +39,10 @@ def get_horarios_discipinas( lines) :
 
 
 def main():
+
+    #Variáveis globais
+    global horario_disciplinas, horario_por_disciplinas, restricoes, variaveis, func_objetivo
+
     file_disciplinas = open("./disciplinas.txt", "r", encoding="utf-8")
     lines = file_disciplinas.readlines()
 
@@ -47,6 +51,7 @@ def main():
     funcao_objetivo(func_objetivo=func_objetivo)
     restricao_4()
     restricao_1()
+    restricao_6()
 
     # print(horario_disciplinas)
     print(func_objetivo)
