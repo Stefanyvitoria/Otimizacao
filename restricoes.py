@@ -58,3 +58,111 @@ def restricao_3(diciplina):
     if diciplina.split(',')[0] in disciplinas_concluidas: 
         return True
     return False
+
+def restricao_4():
+  for disciplina in precedencia_por_disciplinas.keys():
+    # Obter as cadeiras que precedem a disciplina dependente
+    precedentes = precedencia_por_disciplinas[disciplina]
+    for precedente in precedentes: #cada uma das cadeiras anteriores da dependente
+      # Obter horario da disciplina dependente
+      horario_disciplina = horario_por_disciplinas[disciplina]
+      # Obter o range de x para a disciplina dependente
+      valores_de_x = variaveis[disciplina]
+      # Obter dia da disciplina dependente
+      dia = int(horario_disciplina[0]) - 1 #seg =1, ter=2, qua=3...
+      # Obter horario da disciplina precedente
+      horario_precedente = horario_por_disciplinas[precedente]
+      # Obter range de x da disciplina precedente
+      valores_de_x_precedente = variaveis[precedente]
+      # Obter dia da disciplina precedente
+      dia_precedente = int(horario_precedente[0]) - 1 #seg =1, ter=2, qua=3...
+      for semestre_precedente in range(1,NUM_MAX_SEMESTRES): #shift
+        # Inicializa lista de somas de X
+        X = []
+        for aula in horario_precedente[2:]:
+          x = get_x(inicio_x=valores_de_x_precedente[0],dia=dia_precedente,semestre=semestre_precedente,horario=int(aula))
+          X.append(x)
+        for semestre_dependente in range(semestre_precedente+1,NUM_MAX_SEMESTRES+1): # Adiciona todas seguintes da disciplina dependente
+          for aula in horario_precedente[2:]:
+            x = get_x(inicio_x=valores_de_x[0],dia=dia,semestre=semestre_dependente,horario=int(aula))
+            X.append(x)
+        add_restricao(X,4)
+
+"""
+Disciplinas que tem precedência não podem ficar no primeiro semestre.
+"""
+def restricao_6():
+    
+    for disciplinas in file_precedencia_por_disciplinas.readlines():
+        if disciplinas[0] == "#": 
+            continue
+            
+        # Verifica se a que ela depende já foi conluída
+        disciplina_dependente, disciplina_requesito = disciplinas.replace('\n','').split(',')
+        disciplinas_concluidas = [d.split(',')[0] for d in file_disciplinas_concluidas]
+        if disciplina_requesito in disciplinas_concluidas:
+            continue
+
+        horario_disciplina = horario_por_disciplinas[disciplina_dependente]
+        valores_de_x = variaveis[disciplina_dependente]
+        dia = int(horario_disciplina[0]) - 1 #seg =1, ter=2, qua=3...
+        
+        X = []
+        for aula in horario_disciplina[2:]:
+            x = get_x(inicio_x=valores_de_x[0],dia=dia,semestre=1,horario=int(aula))
+            X.append(x)
+        
+        add_restricao(X,0)
+        
+
+def restricao_3(diciplina):
+
+    disciplinas_concluidas = [d.split(',')[0] for d in file_disciplinas_concluidas]
+    if diciplina.split(',')[0] in disciplinas_concluidas: 
+        return True
+    return False
+
+def restricao_5(disciplina, lista):
+    
+
+    if disciplina[3] in lista:
+        return False
+    else:
+        lista.append(disciplina[3]) 
+
+
+
+
+
+
+
+'''string = '2M1234'
+lista = [string[:2], list(string[2:])]
+
+lista3 = []
+
+string2 = '2M5678'
+lista2 = [string2[:2], list(string2[2:])]
+ 
+
+string4 = '2M9'
+lista4 = [string4[:2], list(string4[2:])]
+
+
+
+lista3.append(lista2)
+lista3.append(lista4)
+
+
+for i in lista3:
+    print(i)
+    if lista[0] in lista3:
+        print('passa')
+    for i in lista3:
+        print(i)
+        print(lista[1])
+        if i in lista[1]:
+            print('n passa')
+            break
+        else:
+            print('passa')'''
