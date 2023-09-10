@@ -127,3 +127,4 @@ def restricao_3(diciplina):
         return False
     else:
         lista.append(disciplina[3]) 
+
