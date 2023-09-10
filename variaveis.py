@@ -26,3 +26,6 @@ variaveis = {} # '12345':[1,900]
 
 # lista com os horários indisponíveis 
 horarios_indisponiveis = open("./horarios_indisponiveis.txt", "r", encoding="utf-8").readlines()
+
+#lista de disciplinas concluídas
+file_disciplinas_concluidas = open("./disciplinas_concluidas.txt", "r", encoding="utf-8").readlines()

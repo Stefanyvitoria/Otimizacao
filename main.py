@@ -19,11 +19,10 @@ def get_horarios_discipinas( lines) :
     x = 1
     num_disciplinas = 0
     for disc in lines:
-        if disc[0] == "#" or restricao_2(disc):
+        if disc[0] == "#" or restricao_2(disc) or restricao_3(disc):
             continue
 
         # Monta o dicionários de horários
-        disc = disc[0:-1].split(",")
         if disc[3] in horario_disciplinas.keys():
             horario_disciplinas[f"{disc[3]}"].append([f"{disc[0]}", num_disciplinas])
         else:
