@@ -47,7 +47,7 @@ def main():
     get_horarios_discipinas(lines=lines)
 
     funcao_objetivo(func_objetivo=func_objetivo)
-
+    restricao_4()
     restricao_1()
 
     # print(horario_disciplinas)
