@@ -19,6 +19,8 @@ def get_horarios_discipinas( lines) :
     x = 1
     num_disciplinas = 0
     for disc in lines:
+        
+        restricao_4(disc[0:5])
         if disc[0] == "#" or restricao_2(disc) or restricao_3(disc):
             continue
 
