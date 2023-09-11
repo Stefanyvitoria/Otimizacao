@@ -1,4 +1,4 @@
 # disciplina dependente,disciplinas precedentes
-14734,14737
-14734,04162
-14733,04162
+#14734,14737
+#14734,04162
+#14733,04162

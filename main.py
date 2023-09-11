@@ -1,3 +1,6 @@
+from Simplex import *
+import math
+
 ###############################################
 # VARIÁVES
 ###############################################
@@ -169,7 +172,7 @@ def restricao_4():
             X.append(x)
         add_restricao(X,4)
 
-#def restricao_5(disciplina, lista):
+def restricao_5(disciplina, lista):
     if disciplina[3] in lista:
         return False
     else:
@@ -261,8 +264,28 @@ def main():
     restricao_6()
 
     # print(horario_disciplinas)
-    print(func_objetivo)
-    print(restricoes)
+    # print(func_objetivo)
+    # print(restricoes)
+
+    t = Simplex(func_objetivo)
+    for restricao in restricoes:
+        t.restricao(restricao[0],restricao[1])
+    
+    t.solucao()
+    # print(t.resultado)
+
+    semestres = []
+    for i in range(1,quantidade_maxima_variaveis+1):
+        if int(t.resultado[f'x{i}']) <= 0 :
+            continue
+        s = math.ceil((int(i)%(NUM_MAX_SEMESTRES*NUM_DIAS))/NUM_MAX_SEMESTRES)
+        if s not in semestres:
+            semestres.append(s)
+        
+
+    print(semestres)
+    print(f'O menor número de semestres é: {len(semestres)}')
+
 
 
 if __name__ == "__main__":

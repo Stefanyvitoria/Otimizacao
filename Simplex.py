@@ -5,6 +5,7 @@ class Simplex:
         self.objetivo = [1] + objetivo
         self.linhas = []
         self.const = []
+        self.resultado = {}
 
     def restricao(self, equacao, limite):
         self.linhas.append([0] + equacao)
@@ -33,8 +34,9 @@ class Simplex:
         return np.argmin(fracoes)
 
     def imprime(self):
-        print('\n', np.matrix([self.objetivo] + self.linhas))
-        print('\n', 'O valor de Z até agora é', self.objetivo[-1])
+        pass
+        # print('\n', np.matrix([self.objetivo] + self.linhas))
+        # print('\n', 'O valor de Z até agora é', self.objetivo[-1])
 
     def pivo(self, linha, coluna):
         elemento_pivo = self.linhas[linha][coluna]
@@ -62,7 +64,7 @@ class Simplex:
         while True:
             c = self.coluna_pivo()
             if c == -1:
-                print('\n', 'Solução ótima encontrada.')
+                # print('\n', 'Solução ótima encontrada.')
                 self.imprime_variaveis()
                 break
             r = self.linha_pivo(c)
@@ -75,9 +77,10 @@ class Simplex:
             variavel = self.linhas[i][-1]
             for j in range(len(variaveis)):
                 variaveis[j] += variavel * self.linhas[i][j + 1]
-        print('\n', 'Valores das variáveis de decisão:')
+        # print('\n', 'Valores das variáveis de decisão:')
         for i, var in enumerate(variaveis):
-            print(f'x{i+1}: {var}')
+            # print(f'x{i+1}: {var}')
+            self.resultado[f'x{i+1}'] = f'{var}'
 
 
 
